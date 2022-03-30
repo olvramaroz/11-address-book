@@ -4,44 +4,84 @@
         <meta charset="utf-8">
         <title>Carnet d'adresse</title>
 
-        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Librairie jQuery -->
-        
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
-        
-        
+        <header>
+            <h1><i class="fa-solid fa-book"></i> Carnet d'Adresses</h1>
+        </header>
 
+        <main>    
             <!-- Contenu du carnet d'adresses (liste de contacts) -->
+            <section id="list-contact"></section>
         
-
             <!-- Détails d'un contact particulier du carnet d'adresses -->
-            
+            <section id="details-contact">
+                <h2><!--Tintin GRENIER--></h2>
+                <h3><!--0723456789--></h3>
+            </section>
 
 
+            <!-- Le formulaire de saisie de contact ne s'affiche pas au démarrage -->
+            <form id="form" action="" method="post">
+                    <div id="divider"></div>
 
+                    <!-- civilité  -->
+                    <div class="form-item">
+                        <label for="title"><span class="label-form">Civilité :</span>  
+                                <select name="know">
+                                    <option value="Frodo"></option>
+                                    <option value="Frodo">Madame (elle)</option>
+                                    <option value="Pippin">Monsieur(il)</option>
+                                    <option value="Sam">Non binaire (iel)</option>
+                                </select>
+                        </label>
+                    </div>
 
+                    <!-- nom  -->
+                    <div class="form-item">
 
-        <!-- Le formulaire de saisie de contact ne s'affiche pas au démarrage -->
-        
+                        <label for="name"><span class="label-form">Nom :</span>
+                            <input type="text" id="name">
+                        </label>
+                    </div>
 
+                    <!-- prénom  -->
+                    <div class="form-item">
 
+                        <label for="firstname"><span class="label-form">Prénom :</span>
+                            <input type="text" id="firstname">
+                        </label>
+                    </div>
 
+                    <!-- téléphone  -->
+                    <div class="form-item">
 
-
-
+                        <label for="phone"><span class="label-form">Téléphone :</span>
+                            <input type="number" id="phone">
+                        </label>
+                    </div>
+                    
+                    <button id="send-btn">Enregistrer</button>
+            </form>
+        </main>
 
         <!-- Fonctions utilitaires -->    
+        <script src="js/utilities.js"></script>
 
         <!-- Fonctions du carnet d'adresses -->
-        
+        <script src="js/address_book.js"></script>
+    
         <!-- Evenements du carnet d'adresses -->
+        <script src="js/events.js"></script>
 
         <!-- Code principal du carnet d'adresses -->
+        <script src="js/main.js"></script>
 
     </body>
 </html>
