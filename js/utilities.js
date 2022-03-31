@@ -6,7 +6,6 @@
  	JSON.parse(string); au contraire, on transforme en objet/tableau un string
  */
 
-
 /*******************************************************************************************/
 /********************************** FONCTIONS UTILITAIRES **********************************/
 /*******************************************************************************************/
@@ -24,9 +23,10 @@ function loadDataFromDomStorage(name) {
 	
 }
 
-function saveDataToDomStorage(name, value) {
+function saveDataToDomStorage(name, data) {
 
-	return localStorage.setItem(name, JSON.stringify(value));
+	return localStorage.setItem(name, JSON.stringify(data));
+
 	/*
 	 * Le DOM storage ne permet pas de stocker des données complexes (objet, tableau...).
 	 * On doit donc d'aborder sérialiser nos données dans un format simple, le JSON.

@@ -24,50 +24,50 @@
             <section id="details-contact">
                 <h2><!--Tintin GRENIER--></h2>
                 <h3><!--0723456789--></h3>
+                <button class="btn btn-edit">Modifier</button>
+            </section>
+
+            <!-- Ajouter et supprimer un contact  -->
+            <section id="addDelete">
+                <button id="add-contact" class="btn btn-add"><i class="fa-solid fa-plus fa-lg"></i></button>
+                <button id="delete-contact" class="btn btn-remove"><i class="fa-solid fa-trash-can fa-lg"></i></button>
             </section>
 
 
             <!-- Le formulaire de saisie de contact ne s'affiche pas au démarrage -->
-            <form id="form" action="" method="post">
+            <form id="form" class="hide" data-mode="add">
                     <div id="divider"></div>
 
                     <!-- civilité  -->
                     <div class="form-item">
-                        <label for="title"><span class="label-form">Civilité :</span>  
+                        <label for="title" class="label-form">Civilité :</label> 
                                 <select name="know">
-                                    <option value="Frodo"></option>
-                                    <option value="Frodo">Madame (elle)</option>
-                                    <option value="Pippin">Monsieur(il)</option>
-                                    <option value="Sam">Non binaire (iel)</option>
+                                    <option value="0"></option>
+                                    <option value="1">Madame (elle)</option>
+                                    <option value="2">Monsieur(il)</option>
+                                    <option value="3">Non binaire (iel)</option>
                                 </select>
-                        </label>
                     </div>
 
                     <!-- nom  -->
                     <div class="form-item">
-
-                        <label for="name"><span class="label-form">Nom :</span>
-                            <input type="text" id="name">
-                        </label>
+                        <label for="name" class="label-form">Nom :</label>
+                        <input type="text" id="name">
                     </div>
 
                     <!-- prénom  -->
                     <div class="form-item">
-
-                        <label for="firstname"><span class="label-form">Prénom :</span>
-                            <input type="text" id="firstname">
-                        </label>
+                        <label for="firstname" class="label-form">Prénom :</label>
+                        <input type="text" id="firstname">
                     </div>
 
                     <!-- téléphone  -->
                     <div class="form-item">
-
-                        <label for="phone"><span class="label-form">Téléphone :</span>
-                            <input type="number" id="phone">
-                        </label>
+                        <label for="phone" class="label-form">Téléphone :</label>
+                        <input type="number" id="phone">
                     </div>
                     
-                    <button id="send-btn">Enregistrer</button>
+                    <button id="save-contact" class="send-btn">Enregistrer</button>
             </form>
         </main>
 

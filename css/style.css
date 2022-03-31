@@ -31,9 +31,13 @@ header, main {
     position: relative;
 }
 
+.hide {
+    display: none;
+}
+
 .label-form {
     font-size: 1.4rem;
-    color: #33b1ad;
+    color: #113f59;
     width: 10rem;
     display: inline-block;
     text-align: right;
@@ -47,7 +51,23 @@ input, select {
     margin: 1rem;
 }
 
-#send-btn {
+.btn {
+    padding: 0.4rem;
+    margin: 1rem 0.3rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-add {
+    background-color: #3a6e6d;
+}
+
+.btn-remove {
+    background-color: #b51515;
+}
+
+.send-btn {
     width: 150px;
     padding: .5rem;
     border: none;
@@ -60,3 +80,14 @@ input, select {
     left: 74px;
 }
 
+.btn:hover, #send-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.btn-edit {
+    background-color: lightsalmon;
+    color: #113f59;
+    font-weight: bold;
+}
