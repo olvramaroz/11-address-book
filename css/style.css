@@ -7,14 +7,21 @@
 }
 
 body {
+    font-family: 'Raleway', sans-serif;
+    color: #113f59;
     background-color: #f3edd3;
     width: 85%;
     margin: 3rem auto;
 }
 
-h1 {
-    font-family: 'Raleway', sans-serif;
-    color: #113f59;
+a {
+    color: #00968B;
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+a:hover {
+    color: #FF6F69;
 }
 
 header, main {
@@ -49,6 +56,15 @@ input, select {
 
 .form-item {
     margin: 1rem;
+}
+
+#list-contact {
+    padding: 0 1.5rem;
+}
+
+#list-contact li, #list-contact li a {
+    font-size: 1.5rem;
+    color: lightcoral;
 }
 
 .btn {
@@ -90,4 +106,8 @@ input, select {
     background-color: lightsalmon;
     color: #113f59;
     font-weight: bold;
+}
+
+#details-contact {
+    margin: 1rem 0;
 }

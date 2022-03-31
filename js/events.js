@@ -51,9 +51,11 @@ function onClickEditContact() {
         case 'Madame':
         $('#title').val(1);
         break;
+
         case 'Monsieur':
         $('#title').val(2);
         break;
+		
         case 'IEL':
         $('#title').val(3);
         break;
@@ -75,7 +77,6 @@ function onClickSaveContact() {
 		$('input[name=lastName]').val(),
 		$('input[name=phone]').val()
 	);
-	console.log('je suis contact', user);
 
 	const addressBook = loadAddressBook();
 	
@@ -83,9 +84,8 @@ function onClickSaveContact() {
 	if ($('#form').data('mode') === 'add') {
 		// il faut push cette entrée dans le loadAddressBook
 		addressBook.push(user);
-		console.log('je suis addressBook dans addContact :', addressBook);
-	} // Mode "édition", il faut modifier un contact existant.
-	else {
+		// Mode "édition", il faut modifier un contact existant.
+	} else {
 		const index = $('#details-contact a').data('index');
 		addressBook[index] = user;
 	}
@@ -123,7 +123,7 @@ function onClickShowContactDetails() {
 	 */
 	$('#details-contact h2').text(`${user.title} ${user.firstName} ${user.lastName}`);
 	$('#details-contact h3').text(user.phone);
-	$('#details-contact a').data('index', index);
+	$('#details-contact button').data('index', index);
 
 	// Affichage des détails
 	$('#details-contact').show();
