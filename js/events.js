@@ -6,22 +6,19 @@
 
 function onClickAddContact() {
 	// Réinitialisation du formulaire (efface les champs texte, etc.).
-    // $('#form').empty();
-    // $('#form').on('click', reset());
-    // $('#form').reset();
     $('#form').trigger('reset');
 
 	// Basculement du formulaire en mode ajout puis affichage.
-    $('#form').data('mode', 'add').show();
+    $('#form').data('mode', 'add').fadeIn('fast');
 }
 
 function onClickClearAddressBook() {
 	// Sauvegarde d'un carnet d'adresse vide, écrasant le carnet d'adresse existant.
-	window.localStorage.clear();
-	saveAddressBook();
+	saveAddressBook(new Array());
 
 	// Mise à jour de l'affichage.
-	refreshAddressBook();
+	$('#details-contact').hide();
+    refreshAddressBook();
 }
 
 function onClickEditContact() {
@@ -35,20 +32,35 @@ function onClickEditContact() {
 	 * La méthode data() de jQuery permet de lire/écrire les attributs HTML data-xxx
 	 */
 
+     //on récupère l'index de la data au click
+     const index = $(this).data('index');
 
+     //on load le carnet d'addresse
+     const addressBook = loadAddressBook();
 
+     //on récupère le contact de ce carnet d'addresse sauvegardé juste avant (en fonction de son index)
+     const user = addressBook[index];
 
+     //on récupère les valeurs entrées dans le formulaire (firstName lastName et phone)
+     $('#firstName').val(user.firstName);
+     $('#lastName').val(user.lastName);
+     $('#phone').val(user.phone);
 
-
-	// Sélection de la bonne <option> HTML de la liste déroulante.
-
-    
-
-
-
+     // et du title
+     switch(user.title) {
+        case 'Madame':
+        $('#title').val(1);
+        break;
+        case 'Monsieur':
+        $('#title').val(2);
+        break;
+        case 'IEL':
+        $('#title').val(3);
+        break;
+    }
 
 	// Basculement du formulaire en mode édition puis affichage.
-	$('#form').data('mode', 'edit').show();
+	$('#form').data('mode', 'edit').fadeIn('slow');
 }
 
 function onClickSaveContact() {
@@ -57,43 +69,37 @@ function onClickSaveContact() {
 			On récupère les données depuis le createContact dans address_book
 			$("input[name=nameGoesHere]").val();
 		*/
-	const contact = createContact (
+	const user = createContact (
 		$('select[name=title]').val(),
 		$('input[name=firstName]').val(),
 		$('input[name=lastName]').val(),
 		$('input[name=phone]').val()
 	);
-	console.log('je suis contact', contact);
+	console.log('je suis contact', user);
+
+	const addressBook = loadAddressBook();
 	
 	// Mode "ajout", il faut ajouter le contact au carnet d'adresses.
 	if ($('#form').data('mode') === 'add') {
 		// il faut push cette entrée dans le loadAddressBook
-		let addressBook = loadAddressBook();
-		addressBook.push(contact);
-
+		addressBook.push(user);
 		console.log('je suis addressBook dans addContact :', addressBook);
-	}
-
-	// Mode "édition", il faut modifier un contact existant.
-	else if ($('#form').data('mode') === 'edit') {
-		console.log("il faut récupérer l'index du contact à éditer, grâce à l'hyperlink");
-
+	} // Mode "édition", il faut modifier un contact existant.
+	else {
 		const index = $('#details-contact a').data('index');
-		addressBook[index] = contact;
+		addressBook[index] = user;
 	}
 
 	// Il faut sauvegarder ces actions pour qu'elles soient prises en compte
 	saveAddressBook(addressBook);
 
 	// On doit mettre à jour l'affichage
-	$('#form').show();
+	$('#form').fadeOut('slow');
 	$('#details-contact').hide();
 	refreshAddressBook();
-
 }
 
 function onClickShowContactDetails() {
-	console.log(this);
 	/*
 	 * this = objet DOM qui a déclenché l'évènement,
 	 *        il s'agit donc de l'un des hyperliens généré dans refreshAddressBook()
@@ -104,18 +110,21 @@ function onClickShowContactDetails() {
 	 * La méthode data() de jQuery permet de lire/écrire les attributs HTML data-xxx
 	 */
 	
+	// onclick, on crée un data index 
+	const index = $(this).data('index');
 
 	// Chargement du carnet d'adresses puis récupération du contact sur lequel on a cliqué.
-
-
+	const addressBook = loadAddressBook();
+	const user = addressBook[index];
 
 	/*
 	 * Affichage des données du contact, enregistrement du numéro (index) du contact dans
 	 * l'attribut HTML data-index de l'hyperlien "Editer ce contact"
 	 */
-	
+	$('#details-contact h2').text(`${user.title} ${user.firstName} ${user.lastName}`);
+	$('#details-contact h3').text(user.phone);
+	$('#details-contact a').data('index', index);
 
-
-		
 	// Affichage des détails
+	$('#details-contact').show();
 }

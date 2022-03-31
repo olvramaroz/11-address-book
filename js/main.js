@@ -15,7 +15,7 @@ $(function () {
 	// Installation des gestionnaires d'évènements.
 	$('#add-contact').on('click', onClickAddContact);
 	$('#delete-contact').on('click', onClickClearAddressBook);
-	$('#details-contact').on('click', onClickEditContact);
+	$('#details-contact a').on('click', onClickEditContact);
 	$('#save-contact').on('click', onClickSaveContact);
 
 	/*

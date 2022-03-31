@@ -5,7 +5,6 @@
 /***************************************************************************************/
 
 // ce sont les données qu'on récupère depuis le localStorage, avec la key "name"
-// pourquoi on ne l'appelle pas "name" tout simplement ? 
 const DOM_STORAGE_ITEM_NAME = "Address Book";
 
 /***************************************************************************************/
@@ -13,21 +12,9 @@ const DOM_STORAGE_ITEM_NAME = "Address Book";
 /***************************************************************************************/
 
 function createContact(title, firstName, lastName, phone) {
-	//création de l'objet du contact (on doit faire une condition pour attribuer le title madame, monsieur, mademoiselle) car il y'a un select
-	// const USER = {
-	// 	title: '',
-	// 	firstName: '',
-	// 	phone: null
-	// }
-	// console.log('je suis USER : ', USER);
-
-	// let { title, firstName, phone } = USER;
-	// const lastName = lastName.toUpperCase();
-
-
 	/*
-	Quand tu es susceptible d'avoir beaucoup de données différentes (ici, plusieurs USER),
-	il est préférable d'utiliser un constructeur Objet
+	Quand tu es susceptible d'avoir beaucoup de données différentes (ici, plusieurs USERs),
+	il est préférable d'utiliser un constructeur d'Objet
 	plutôt que d'utiliser une simple constante (méthode classique)
 
 	On peut utiliser ici le new Object()
@@ -35,23 +22,23 @@ function createContact(title, firstName, lastName, phone) {
 	"This" pointe l'élément (objet) où je me trouve actuellement.
 
 	Comme on a déjà des paramètres dans notre fonction, utilisons cette méthode
-		et là, on peut appliquer notre méthode .toUpperCase();
+		**** on ne peut pas utiliser "this" en variable ****
 	*/
 
 	const user = new Object();
 
 	user.firstName = firstName;
-	user.lastName = lastName;
+	user.lastName = lastName.toUpperCase();
 	user.phone = phone;
 
 	switch(title) {
-		case "1":
+		case '1':
 			user.title = 'Madame';
 			break;
-		case "2":
+		case '2':
 			user.title = 'Monsieur';
 			break;
-		case "3":
+		case '3':
 			user.title = 'IEL'
 			break;
 	}
@@ -64,14 +51,11 @@ function createContact(title, firstName, lastName, phone) {
 function loadAddressBook() {
 	// Chargement du carnet d'adresses depuis le DOM storage.
     let addressBook = loadDataFromDomStorage(DOM_STORAGE_ITEM_NAME);
-	console.log('je suis addressBook dans loadAddressBook() :', addressBook);
-
 
 	// Est-ce qu'il n'y avait aucune donnée dans le DOM storage ?
 	if (addressBook === null) {
-		// Oui, création d'un carnet d'adresses vide.
-		addressBook = new Array();
-		createContact();
+		// Oui, création d'un carnet d'adresses vide pour pouvoir push dedans
+		addressBook = new Array(); // ou addressBook = []
 	}
 	//on retourne notre valeur
     return addressBook;
@@ -82,31 +66,28 @@ function refreshAddressBook() {
 	//chargement du carnet d'addresse
     const addressBook = loadAddressBook();
 
-	// Suppression de l'ensemble du carnet d'adresses HTML.
+	// Suppression de l'ensemble des balises enfants de lis-contact
 	$('#list-contact').empty();
     
 	// Construction de la liste <ul> contenant le carnet d'adresses HTML.
-    const listContact = `<ul>`;
+    const listContact = $('<ul>');
 
 	// Affichage HTML du carnet d'adresses, un contact à la fois.(boucle)
 	for (let index = 0; index < addressBook.length; index++) {
 		// Construction de l'hyperlien <a> contenant le nom et prénom du contact.
-		const hyperlink = $("<a>")
-			.attr("href", "#")
-			.data("index", index)
-			.text(
-				addressBook[index].firstName + " " + addressBook[index].lastName
-			);
+		const hyperlink = $('<a>')
+			.attr('href', '#')
+			.data('index', index)
+			.text(`${addressBook[index].firstName} ${addressBook[index].lastName}`);
 
 		/*
 		* 1. Insertion de la balise <a> dans une nouvelle balise <li>
 		* 2. Ajout de la balise <li> à l'intérieur de la balise <ul>
 		*/
-		listContact.append(`<li> ${hyperlink} </li></ul>`);
+		listContact.append($('<li>').append(hyperlink));
 	}
 	//ajout dans le html
-    document.getElementById('list-contact').innerHTML = listContact;
-	console.log('je suis listContact dans refreshAddressBook() :', listContact);
+    $('#list-contact').append(listContact);
 }
 
 
@@ -115,3 +96,5 @@ function saveAddressBook(addressBook) {
 	saveDataToDomStorage(DOM_STORAGE_ITEM_NAME, addressBook);
     
 }
+
+
