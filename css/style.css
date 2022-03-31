@@ -122,7 +122,7 @@ footer {
     margin: auto;
 }
 
-h3 {
+footer > h3 {
     margin: 8rem 0;
     background-color: #113f59;
     border-radius: 1rem;
