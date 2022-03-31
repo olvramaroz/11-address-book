@@ -9,19 +9,22 @@
 body {
     font-family: 'Raleway', sans-serif;
     color: #113f59;
-    background-color: #f3edd3;
+    background-image: url('../5.jpg');
+    background-position: 100% -1920px;
+    background-repeat: no-repeat;
     width: 85%;
     margin: 3rem auto;
 }
 
 a {
-    color: #00968B;
+    font-size: 1.5rem;
+    color: #113f59;
     text-decoration: none;
     transition: color 0.25s;
 }
 
 a:hover {
-    color: #FF6F69;
+    color: #d82070;
 }
 
 header, main {
@@ -43,11 +46,11 @@ header, main {
 }
 
 .label-form {
-    font-size: 1.4rem;
-    color: #113f59;
-    width: 10rem;
+    background-color: #113f59;
+    color: #fff;
     display: inline-block;
     text-align: right;
+    padding: .2rem;
 }
 
 input, select {
@@ -62,9 +65,8 @@ input, select {
     padding: 0 1.5rem;
 }
 
-#list-contact li, #list-contact li a {
+#list-contact li {
     font-size: 1.5rem;
-    color: lightcoral;
 }
 
 .btn {
@@ -93,7 +95,8 @@ input, select {
     color: #fff;
     position: absolute;
     top: 200px;
-    left: 74px;
+    left: 14px;
+    cursor: pointer;
 }
 
 .btn:hover, #send-btn:hover {
@@ -110,4 +113,18 @@ input, select {
 
 #details-contact {
     margin: 1rem 0;
+}
+
+footer {
+    height: 5rem;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+h3 {
+    margin: 8rem 0;
+    background-color: #113f59;
+    border-radius: 1rem;
+    color: #fff;
 }
